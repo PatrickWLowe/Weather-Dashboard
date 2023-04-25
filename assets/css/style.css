@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+
+}
+
+header {
+color: white;
+background-color: rgb(21, 21, 101);
+font-size: x-large;
+padding: 10px;
+padding-bottom: 20px;
+border-radius: 10px;
+border-color: black;
+}
+
+aside {
+  padding-left: 15px;
+}
+
+#todays-weather {
+  margin-left: 300px;
+  margin-right: 200px;
+  border-style: solid;
+  border-color:  rgb(21, 21, 101);
+}
+
+.future-weather{
+  margin-left: 300px;
+
+}
+
+.future{
+  margin: 10px;
+  border-style: solid;
+  border-color:  rgb(21, 21, 101);
+}

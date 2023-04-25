@@ -14,6 +14,71 @@
 
 <body>
 
+<header class="text-center"> Weather Dashboard</header>
+
+<aside>
+  <h3>Search for a City:</h3>
+  <div class="inputcity">
+    <input type="text" id="search-city" placeholder="Enter a City...">
+     <div>
+      <button class="button fa fa-search" type="button" id="searchbtn">Search</button>
+    </div>
+    <ul class="citylist"></ul>
+  </div>
+</aside>
+
+<div id="todays-weather">
+  <h2 id="cityname"></h2>
+  <p>Temperature:<span id="temperature"></span></p>
+  <p>Humidity:<span id="humidity"></span></p> 
+  <p>Wind Speed:<span id="wind-speed"></span></p>
+  <p>UV index:<span id="uv-index"></span></p>                  
+</div>
+
+<h3 class="text-center">5 Day Forecast</h3>
+
+<div class="future-weather">
+  <div class="row">
+
+    <div class="col-sm-2 future">
+      <p id="date1"></p>
+      <p id="img1"></p>
+      <p>Temperature:<span id="Temp1"></span></p>
+      <p>Humidity:<span id="humid1"></span></p>
+    </div>
+
+    <div class="col-sm-2 future">
+      <p id="date2"></p>
+      <p id="img2"></p>
+      <p>Temperature:<span id="Temp2"></span></p>
+      <p>Humidity:<span id="humid2"></span></p>
+    </div>
+
+    <div class="col-sm-2 future">
+      <p id="date3"></p>
+      <p id="img3"></p>
+      <p>Temperature:<span id="Temp3"></span></p>
+      <p>Humidity:<span id="humid3"></span></p>
+    </div>
+
+    <div class="col-sm-2 future">
+      <p id="date4"></p>
+      <p id="img4"></p>
+      <p>Temperature:<span id="Temp4"></span></p>
+      <p>Humidity:<span id="humid4"></span></p>
+    </div>
+
+    <div class="col-sm-2 future">
+      <p id="date5"></p>
+      <p id="img5"></p>
+      <p>Temperature:<span id="Temp5"></span></p>
+      <p>Humidity:<span id="humid5"></span></p>
+    </div>
+
+  </div>
+</div>
+
+
   
   <script src="./assets/js/script.js"></script>
 </body>
