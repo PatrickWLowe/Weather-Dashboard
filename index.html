@@ -19,20 +19,21 @@
 <aside>
   <h3>Search for a City:</h3>
   <div class="inputcity">
-    <input type="text" id="search-city" placeholder="Enter a City...">
-     <div>
+    <form id="desired-city">
+      <input type="text" id="search-city" placeholder="Enter a City...">
       <button class="button fa fa-search" type="button" id="searchbtn">Search</button>
-    </div>
+    </form>
     <ul class="citylist"></ul>
   </div>
 </aside>
 
 <div id="todays-weather">
   <h2 id="cityname"></h2>
-  <p>Temperature:<span id="temperature"></span></p>
-  <p>Humidity:<span id="humidity"></span></p> 
-  <p>Wind Speed:<span id="wind-speed"></span></p>
-  <p>UV index:<span id="uv-index"></span></p>                  
+  <p id="date0"></p>
+  <p id="img0"></p>
+  <p>Temperature:<span id="temp0"></span></p>
+  <p>Humidity:<span id="humid0"></span></p> 
+  <p>Wind Speed:<span id="wind0"></span></p>                
 </div>
 
 <h3 class="text-center">5 Day Forecast</h3>
@@ -45,6 +46,7 @@
       <p id="img1"></p>
       <p>Temperature:<span id="Temp1"></span></p>
       <p>Humidity:<span id="humid1"></span></p>
+      <p>Wind Speed:<span id="wind1"></span></p>
     </div>
 
     <div class="col-sm-2 future">
@@ -52,6 +54,7 @@
       <p id="img2"></p>
       <p>Temperature:<span id="Temp2"></span></p>
       <p>Humidity:<span id="humid2"></span></p>
+      <p>Wind Speed:<span id="wind2"></span></p>
     </div>
 
     <div class="col-sm-2 future">
@@ -59,6 +62,7 @@
       <p id="img3"></p>
       <p>Temperature:<span id="Temp3"></span></p>
       <p>Humidity:<span id="humid3"></span></p>
+      <p>Wind Speed:<span id="wind3"></span></p>
     </div>
 
     <div class="col-sm-2 future">
@@ -66,6 +70,7 @@
       <p id="img4"></p>
       <p>Temperature:<span id="Temp4"></span></p>
       <p>Humidity:<span id="humid4"></span></p>
+      <p>Wind Speed:<span id="wind4"></span></p>
     </div>
 
     <div class="col-sm-2 future">
@@ -73,6 +78,7 @@
       <p id="img5"></p>
       <p>Temperature:<span id="Temp5"></span></p>
       <p>Humidity:<span id="humid5"></span></p>
+      <p>Wind Speed:<span id="wind5"></span></p>
     </div>
 
   </div>
