@@ -6,25 +6,31 @@ var weather = [];
 var listedcities = [];
 
 function ShowWeather(weather) {
-    $("#cityname").text(cityname);
+    $(`#cityname`).text(searchedcity);
     for (var i = 0; i <= 5; i++) {
         $(`#date`+i).html(weather[i].date);
         $(`#img`+i).html(weather[i].icon);
-        $(`#temp`+i).text(weather[i].temp);
+        $(`#Temp`+i).text(weather[i].temp);
         $(`#humid`+i).text(weather[i].hum);
-        $(`#wind`+i).html(weather[i].wind);
+        $(`#wind`+i).text(weather[i].wind);
         }
 }
 
 function CityList(listedcities) {
     var text = "";
     for (var i = 0; i < listedcities.length; i++) { 
-        text += listedcities[i] + "<br>";
+        text += `<li class= "btn justify-content-between align-items-center" onclick="RecieveAPI2('`+listedcities[i]+`')">`+listedcities[i]+`</li>`;;
     }
     document.getElementById("citylist").innerHTML = text;
 }
 
-function GetAPI(lat, long, searchedcity) {
+function AppendCityList(searchedcity) {
+    listedcities.push(searchedcity);
+    localStorage.setItem("listedcities", JSON.stringify(listedcities));
+    CityList(listedcities);
+}
+
+function RecieveAPI(lat, long, searchedcity) {
     var queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&appid=${APIkey}`;
 
     fetch(queryURL)
@@ -40,9 +46,9 @@ function GetAPI(lat, long, searchedcity) {
         .then(function (data) {
             console.log(data);
             var weather = [];
-
+            AppendCityList(searchedcity);
             for (var i = 0; i <= 5; i++) {
-                var date = moment.unix(data.daily[i].dt).format("MM/DD/YYYY");
+                var date = data.daily[i].dt;
                 var icon = data.daily[i].weather[0].icon;
                 var temp = data.daily[i].temp.day;
                 var hum = data.daily[i].humidity;
@@ -51,9 +57,12 @@ function GetAPI(lat, long, searchedcity) {
             }
             ShowWeather(weather);
         })
+        .catch(function (error) {
+            console.error(error);
+        });
 }
 
-function GetAPI2(query) {
+function RecieveAPI2(query) {
     var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${APIkey}`;
 
     fetch(queryURL)
@@ -66,8 +75,24 @@ function GetAPI2(query) {
             console.log(response);
             return response.json();
         })
+        .then(function (data) {
+            console.log(data);
+            var lat = data.city.coord.lat;
+            var long = data.city.coord.lon;
+            searchedcity = query;
+            RecieveAPI(lat, long, searchedcity);
+        })
     
 }
+
+function ShowCityList() {
+    var storedCities = JSON.parse(localStorage.getItem("listedcities"));
+    if (storedCities !== null) {
+        listedcities = storedCities;
+    }
+    CityList(listedcities);
+}
+
 function Submit(event) {
     event.preventDefault();
     var searchVal = document.querySelector('#search-city').value;
@@ -75,7 +100,8 @@ function Submit(event) {
       console.error('Need Valid Search Term');
       return;
     }
-    GetAPI2(searchVal);
+    RecieveAPI2(searchVal);
   }
 
 Inputcity.addEventListener('submit', Submit);
+listedcities = ShowCityList(listedcities);
