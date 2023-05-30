@@ -16,6 +16,14 @@ function ShowWeather(weather) {
         }
 }
 
+function CityList(listedcities) {
+    var text = "";
+    for (var i = 0; i < listedcities.length; i++) { 
+        text += listedcities[i] + "<br>";
+    }
+    document.getElementById("citylist").innerHTML = text;
+}
+
 function GetAPI(lat, long, searchedcity) {
     var queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&appid=${APIkey}`;
 
@@ -32,6 +40,7 @@ function GetAPI(lat, long, searchedcity) {
         .then(function (data) {
             console.log(data);
             var weather = [];
+
             for (var i = 0; i <= 5; i++) {
                 var date = moment.unix(data.daily[i].dt).format("MM/DD/YYYY");
                 var icon = data.daily[i].weather[0].icon;
