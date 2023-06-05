@@ -36,8 +36,8 @@ function AppendCityList(searchedcity) {
 }
 
 function RecieveAPI(lat, long, searchedcity) {
-  var queryURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely,hourly&appid=${APIkey}`;
-
+  var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&appid=${APIkey}`;
+ 
   fetch(queryURL)
     .then(function (response) {
       console.log(response);
@@ -54,12 +54,14 @@ function RecieveAPI(lat, long, searchedcity) {
       AppendCityList(searchedcity);
       for (var i = 0; i <= 5; i++) {
         var Cday = {
-          date: data.daily[i].dt,
-          icon: data.daily[i].weather[0].icon,
-          temp: data.daily[i].temp.day,
-          hum: data.daily[i].humidity,
-          wind: data.daily[i].wind_speed,
+          date: data.list[i].dt,
+          icon: data.list[i].weather[0].icon,
+          temp: data.list[i].main.temp+` °F`,
+          hum: data.list[i].main.humidity+`%`,
+          wind: data.list[i].wind.speed+` MPH`,
+          icon:`https://openweathermap.org/img/wn/`+data.list[i].weather[0].icon+`.png`
         };
+        
         Cday.date = Cday.date * 1000;
         const dateObject = new Date(Cday.date);
         Cday.date = dateObject.toLocaleDateString();
@@ -73,7 +75,8 @@ function RecieveAPI(lat, long, searchedcity) {
 }
 
 function RecieveAPI2(query) {
-  var queryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${query}&appid=${APIkey}`;
+  var queryURL = `https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=5&appid=${APIkey}`;
+ 
 
   fetch(queryURL)
     .then(function (response) {
@@ -87,8 +90,8 @@ function RecieveAPI2(query) {
     })
     .then(function (data) {
       console.log(data);
-      var lat = data.city.coord.lat;
-      var long = data.city.coord.lon;
+      var lat = data[0].lat;
+      var long = data[0].lon;
       searchedcity = query;
       RecieveAPI(lat, long, searchedcity);
     });
