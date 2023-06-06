@@ -106,7 +106,7 @@ function RecieveAPI2(query) {
 
 function ShowCityList(listedcities) {
   listedcities = JSON.parse(localStorage.getItem("listedcities"));
-  if (listedcities !== null) {
+  if (!listedcities) {
     console.log("No information stored");
     listedcities = [];
   }
