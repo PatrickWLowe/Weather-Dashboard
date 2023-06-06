@@ -7,14 +7,20 @@ var listedcities = [];
 
 function ShowWeather(weather) {
   $(`#cityname`).text(searchedcity);
-  for (var i = 0; i <= 5; i++) {
+  $(`#date-today`).html(weather[0].date);
+  $(`#img-today`).attr("src", weather[0].icon);
+  $(`#Temp-today`).text(weather[0].temp);
+  $(`#humid-today`).text(weather[0].hum);
+  $(`#wind-today`).text(weather[0].wind);
+  for (var i = 0; i <= 4; i++) {
     $(`#date` + i).html(weather[i].date);
-    $(`#img` + i).html(weather[i].icon);
+    $(`#img` + i).attr("src", weather[i].icon);
     $(`#Temp` + i).text(weather[i].temp);
     $(`#humid` + i).text(weather[i].hum);
     $(`#wind` + i).text(weather[i].wind);
   }
 }
+
 
 function CityList(listedcities) {
   var text = "";
@@ -37,7 +43,7 @@ function AppendCityList(searchedcity) {
 
 function RecieveAPI(lat, long, searchedcity) {
   var queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=imperial&appid=${APIkey}`;
- 
+  
   fetch(queryURL)
     .then(function (response) {
       console.log(response);
@@ -52,13 +58,14 @@ function RecieveAPI(lat, long, searchedcity) {
       console.log(data);
       var weather = [];
       AppendCityList(searchedcity);
-      for (var i = 0; i <= 5; i++) {
+      for (var i = 0; i <= 4; i++) {
+        let n = i*8
         var Cday = {
-          date: data.list[i].dt,
-          icon: data.list[i].weather[0].icon,
-          temp: data.list[i].main.temp+` °F`,
-          hum: data.list[i].main.humidity+`%`,
-          wind: data.list[i].wind.speed+` MPH`,
+          date: data.list[n].dt,
+          icon: data.list[n].weather[0].icon,
+          temp: data.list[n].main.temp+` °F`,
+          hum: data.list[n].main.humidity+`%`,
+          wind: data.list[n].wind.speed+` MPH`,
           icon:`https://openweathermap.org/img/wn/`+data.list[i].weather[0].icon+`.png`
         };
         
