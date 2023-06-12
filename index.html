@@ -16,7 +16,8 @@
 
 <header class="text-center"> Weather Dashboard</header>
 
-<aside>
+<div class="row">
+<div id="sidebar" class="col-sm-2">
   <h3>Search for a City:</h3>
   <div class="inputcity">
     <form id="desired-city">
@@ -25,11 +26,12 @@
         <button class="button fa fa-search" type="submit" id="searchbtn">Search</button>
       </div>
     </form>
-    <ul id="citylist"></ul>
+    <ul class="col-2" id="citylist"></ul>
   </div>
-</aside>
+</div>
 
-<div id="todays-weather">
+<div id= "bigcol" class="col-10">
+<div class="col-10" id="todays-weather">
   <h2><span id="cityname"></span></h2>
   <p id="date-today"></p>
   <img id="img-today"><img>
@@ -85,8 +87,8 @@
 
   </div>
 </div>
-
-
+</div>
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
   <script src="./assets/js/script.js"></script>

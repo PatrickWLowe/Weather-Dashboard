@@ -13,24 +13,24 @@ border-radius: 10px;
 border-color: black;
 }
 
-aside {
-  padding-left: 15px;
-}
 
 #todays-weather {
-  margin-left: 300px;
-  margin-right: 200px;
   border-style: solid;
   border-color:  rgb(21, 21, 101);
 }
 
-.future-weather{
-  margin-left: 300px;
-
+#sidebar {
+  padding-top: 15px;
+  padding-left: 20px
 }
 
 .future{
   margin: 10px;
   border-style: solid;
   border-color:  rgb(21, 21, 101);
+}
+
+#bigcol {
+  position: static;
+  padding-top: 15px;
 }

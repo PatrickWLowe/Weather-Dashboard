@@ -125,3 +125,4 @@ function Submit(event) {
 
 Inputcity.addEventListener("submit", Submit);
 listedcities = ShowCityList(listedcities);
+RecieveAPI2("Sacramento");
